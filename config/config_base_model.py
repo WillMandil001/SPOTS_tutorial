@@ -31,8 +31,9 @@ class Config:
         ###########################
         # setup parameters
         ###########################
-        
-        self.debug == True
+        self.model_name      = "SPOTS_SVG_ACTP"
+        self.debug = True
+        self.model_name_save_appendix  = ""
 
         ###########################
         # Training parameters
@@ -77,13 +78,18 @@ class Config:
         self.n_past                    = self.context_length
         self.n_future                  = self.num_frames - self.context_length
         self.n_eval                    = self.prediction_horizon
-        
+
+        self.image_height = 64
+        self.image_width  = 64
+
+        self.input_dim   	             = 3
         self.channels                  = self.input_dim
         self.out_channels              = self.input_dim
         self.model_dir                 = ""
         self.model_name_save_appendix  = ""
 
-        self.state_action_size         = 6 * 2
+        self.action_dim 	             = 6
+        self.state_action_size         = self.action_dim * 2
         self.rnn_size                  = 256 # Large: 512 , Medium: 256
         self.predictor_rnn_layers      = 6   # Large: 6   , Medium: 4
         self.posterior_rnn_layers      = 4   # Large: 4   , Medium: 3
@@ -112,3 +118,4 @@ class Config:
 
     def __repr__(self):
         return str(self.to_dict())
+
